@@ -1,0 +1,22 @@
+Simple and small Redis client for Marmalade.
+
+Based on hiredis C client.
+Sync mode only.
+
+example:
+
+	#include "hiredis/hiredis.h"
+
+	redisContext c_redis = redisConnect("localhost", 6379);
+
+	redisReply my_reply = (redisReply*) redisCommand(c_redis,"get somekeyofmine");
+	char* res= my_reply->str;
+	int len = my_reply->len;
+	
+	
+	redisReply my_reply = (redisReply*) redisCommand(c_redis,"smembers somesetofmine");
+	for (uint i = 0; i < (my_reply->elements); i++) 
+		char* res = my_reply->element[i]->str;
+
+	
+	
